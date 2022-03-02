@@ -1,1 +1,0 @@
-# Sutherland - Hodgman Clipping Algorithm

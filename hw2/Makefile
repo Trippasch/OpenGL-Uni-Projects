@@ -3,7 +3,7 @@ CFLAGS = -g -Wall
 
 ifeq "$(OS)" "Windows_NT"
 # Windows
-EXECS = clipping_polygons.exe
+EXECS = clipping_polygons.exe views.exe
 LIBS = -lfreeglut -lopengl32 -lglu32
 IFLAGS = -I".\freeglut\include"
 LFLAGS =  -L".\freeglut\lib"
@@ -11,6 +11,8 @@ RM = del
 
 all: $(EXECS)
 clipping_polygons.exe: clipping_polygons.o
+	$(CC) $(CFLAGS) -o $@ $< $(LFLAGS) $(LIBS)
+views.exe: views.o
 	$(CC) $(CFLAGS) -o $@ $< $(LFLAGS) $(LIBS)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< $(IFLAGS)
@@ -20,7 +22,7 @@ clean:
 	if exist *.o   $(RM) *.o
 else
 # Linux
-TARGETS = clipping_polygons
+TARGETS = clipping_polygons views
 LIBS = -lm -lGL -lglut -lGLU
 RM = rm -f
 

@@ -3,13 +3,15 @@ CFLAGS = -g -Wall
 
 ifeq "$(OS)" "Windows_NT"
 # Windows
-EXECS = scan_polygon_exercise.exe
+EXECS = bresenham_exercise.exe scan_polygon_exercise.exe
 LIBS = -lfreeglut -lopengl32 -lglu32
 IFLAGS = -I".\freeglut\include"
 LFLAGS =  -L".\freeglut\lib"
 RM = del
 
 all: $(EXECS)
+bresenham_exercise.exe: bresenham_exercise.o
+	$(CC) $(CFLAGS) -o $@ $< $(LFLAGS) $(LIBS)
 scan_polygon_exercise.exe: scan_polygon_exercise.o
 	$(CC) $(CFLAGS) -o $@ $< $(LFLAGS) $(LIBS)
 %.o: %.c
@@ -20,7 +22,7 @@ clean:
 	if exist *.o   $(RM) *.o
 else
 # Linux
-TARGETS = scan_polygon_exercise
+TARGETS = bresenham_exercise scan_polygon_exercise
 LIBS = -lm -lGL -lglut -lGLU
 RM = rm -f
 
